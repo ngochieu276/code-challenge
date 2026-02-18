@@ -98,6 +98,7 @@ export const ResourceList = () => {
           loading={isLoading}
           rowKey="id"
           dataSource={resources}
+          scroll={{ x: "max-content" }}
           pagination={{
             current: page,
             pageSize,
