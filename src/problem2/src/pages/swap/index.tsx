@@ -1,6 +1,5 @@
 import React from "react";
-
-import { SwapCard } from "@/components/swap/SwapCard";
+import { SwapCard } from "@/components/swap";
 
 export const SwapPage: React.FC = () => {
   return (

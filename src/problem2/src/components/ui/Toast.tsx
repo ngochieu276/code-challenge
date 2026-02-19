@@ -1,8 +1,8 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
-import { X, CheckCircle, AlertCircle } from 'lucide-react';
-import { cn } from '../../utils/cn';
+import React, { createContext, useContext, useState, useCallback } from "react";
+import { X, CheckCircle, AlertCircle } from "lucide-react";
+import { cn } from "@/utils";
 
-type ToastType = 'success' | 'error' | 'info';
+type ToastType = "success" | "error" | "info";
 
 interface Toast {
   id: string;
@@ -39,15 +39,17 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             key={toast.id}
             className={cn(
               "pointer-events-auto flex items-center gap-3 px-4 py-3 rounded-md shadow-lg text-white transition-all transform translate-x-0 opacity-100",
-              toast.type === 'success' && "bg-success text-white",
-              toast.type === 'error' && "bg-danger text-white",
-              toast.type === 'info' && "bg-background-secondary border border-gray-700 text-text-primary"
-            )}
-          >
-            {toast.type === 'success' && <CheckCircle size={20} />}
-            {toast.type === 'error' && <AlertCircle size={20} />}
+              toast.type === "success" && "bg-success text-white",
+              toast.type === "error" && "bg-danger text-white",
+              toast.type === "info" &&
+                "bg-background-secondary border border-gray-700 text-text-primary"
+            )}>
+            {toast.type === "success" && <CheckCircle size={20} />}
+            {toast.type === "error" && <AlertCircle size={20} />}
             <p className="text-sm font-medium flex-1">{toast.message}</p>
-            <button onClick={() => removeToast(toast.id)} className="text-white/80 hover:text-white">
+            <button
+              onClick={() => removeToast(toast.id)}
+              className="text-white/80 hover:text-white">
               <X size={16} />
             </button>
           </div>
@@ -59,6 +61,6 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
 export const useToast = () => {
   const context = useContext(ToastContext);
-  if (!context) throw new Error('useToast must be used within a ToastProvider');
+  if (!context) throw new Error("useToast must be used within a ToastProvider");
   return context;
 };

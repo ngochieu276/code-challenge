@@ -1,8 +1,7 @@
 import React from "react";
 import { ArrowDownUp } from "lucide-react";
-import { Modal } from "../ui/Modal";
-import { Button } from "../ui/Button";
-import { Token } from "../../types";
+import { Modal, Button } from "@/components/ui";
+import { Token } from "@/types";
 
 interface ConfirmSwapModalProps {
   isOpen: boolean;

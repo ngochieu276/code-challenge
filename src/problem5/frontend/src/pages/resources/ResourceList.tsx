@@ -1,17 +1,13 @@
 import { useEffect, useState } from "react";
-import { Layout } from "../../components/layout/Layout";
-import { Button } from "../../components/ui/Button";
+import { Button } from "@/components/ui";
 import { Plus, Grid2X2, Table2Icon } from "lucide-react";
 import { Pagination, Table } from "antd";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { getResourceTableColumns } from "../../components/resources/ResourceTableColumn";
-import { CreateEditServiceTable } from "../../components/resources/CreateEditServiceTable";
-import { useResources, useResourceForm, useDeleteResource } from "../../hooks/resources";
-import { ResourceGridItem } from "../../components/resources/ResourceGridItem";
-import { ResourcesFilter } from "../../components/resources/ResourcesFilter";
-import { ListLoading } from "../../components/layout/ListLoading";
-import { ListEmpty } from "../../components/layout/ListEmpty";
+import { getResourceTableColumns, CreateEditServiceTable } from "@/components/resources";
+import { useResources, useResourceForm, useDeleteResource } from "@/hooks/resources";
+import { ResourceGridItem, ResourcesFilter } from "@/components/resources";
+import { ListLoading, ListEmpty } from "@/components/layout";
 
 export const ResourceList = () => {
   const queryClient = useQueryClient();

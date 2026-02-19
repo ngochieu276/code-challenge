@@ -1,7 +1,7 @@
 import { Tag, Popconfirm } from "antd";
 import { Edit2, Trash2 } from "lucide-react";
-import { Button } from "../ui/Button";
-import type { Resource } from "../../services/api";
+import { Button } from "@/components/ui";
+import type { Resource } from "@/services/service.api";
 
 type Props = {
   resource: Resource;

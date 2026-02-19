@@ -1,8 +1,8 @@
 import { useQuery, keepPreviousData, useQueryClient, useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { Form, message } from "antd";
-import { resourceService } from "../../services/api";
-import type { Resource, CreateResourceDTO } from "../../services/api";
+import { resourceService } from "@/services/service.api";
+import type { Resource, CreateResourceDTO } from "@/services/service.api";
 
 interface GetResourceParams {
   name: string;
@@ -40,7 +40,25 @@ export const useResourceForm = (): UseResourceFormResult => {
   const [form] = Form.useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
-  const [submitting, setSubmitting] = useState(false);
+
+  const upsertMutation = useMutation({
+    mutationFn: async ({ id, values }: { id?: number; values: CreateResourceDTO }) => {
+      if (id) {
+        return resourceService.update(id, values);
+      }
+      return resourceService.create(values);
+    },
+    onSuccess: (_data, variables) => {
+      message.success(
+        variables.id ? "Resource updated successfully" : "Resource created successfully"
+      );
+      setIsModalOpen(false);
+      queryClient.invalidateQueries({ queryKey: ["resources"] });
+    },
+    onError: () => {
+      message.error("Operation failed");
+    },
+  });
 
   const openCreate = () => {
     setEditingId(null);
@@ -57,29 +75,14 @@ export const useResourceForm = (): UseResourceFormResult => {
   const closeModal = () => setIsModalOpen(false);
 
   const handleSubmit = async (values: CreateResourceDTO) => {
-    setSubmitting(true);
-    try {
-      if (editingId) {
-        await resourceService.update(editingId, values);
-        message.success("Resource updated successfully");
-      } else {
-        await resourceService.create(values);
-        message.success("Resource created successfully");
-      }
-      setIsModalOpen(false);
-      queryClient.invalidateQueries({ queryKey: ["resources"] });
-    } catch {
-      message.error("Operation failed");
-    } finally {
-      setSubmitting(false);
-    }
+    upsertMutation.mutate({ id: editingId ?? undefined, values });
   };
 
   return {
     form,
     isModalOpen,
     editingId,
-    submitting,
+    submitting: upsertMutation.isPending,
     openCreate,
     openEdit,
     closeModal,

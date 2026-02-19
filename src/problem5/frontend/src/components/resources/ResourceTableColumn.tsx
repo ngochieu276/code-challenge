@@ -1,8 +1,8 @@
 import type { ColumnsType } from "antd/es/table";
 import { Tag, Popconfirm } from "antd";
 import { Edit2, Trash2 } from "lucide-react";
-import { Button } from "../ui/Button";
-import type { Resource } from "../../services/api";
+import { Button } from "@/components/ui";
+import type { Resource } from "@/services/service.api";
 
 export const getResourceTableColumns = ({
   onEdit,

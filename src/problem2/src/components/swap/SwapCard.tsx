@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { ArrowDownUp, Settings } from "lucide-react";
-import { useSwap } from "../../hooks/useSwap";
-import { useToast } from "../ui/Toast";
-import { TokenInput } from "./TokenInput";
-import { Button } from "../ui/Button";
-import { TokenModal } from "./TokenModal";
-import { OrderDetails } from "./OrderDetails";
-import { MOCK_TOKENS } from "../../constants/tokens";
-import { Token } from "../../types";
-import { ConfirmSwapModal } from "./ConfirmSwapModal";
-import { Slippage } from "./Slippage";
+import { MOCK_TOKENS } from "@/constants/tokens";
+import { Token } from "@/types";
+import {
+  Slippage,
+  ConfirmSwapModal,
+  OrderDetails,
+  TokenModal,
+  TokenInput,
+} from "@/components/swap";
+import { Button, useToast } from "@/components/ui";
+import { useSwap } from "@/hooks/useSwap";
 
 export const SwapCard: React.FC = () => {
   const {

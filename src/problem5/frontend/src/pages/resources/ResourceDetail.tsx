@@ -1,8 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { resourceService } from "../../services/api";
-import { Layout } from "../../components/layout/Layout";
-import { Button } from "../../components/ui/Button";
+import { resourceService } from "@/services/service.api";
+import { Button } from "@/components/ui";
 import { Tag } from "antd";
 
 export const ResourceDetail = () => {

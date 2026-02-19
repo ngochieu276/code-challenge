@@ -1,8 +1,8 @@
 import React from "react";
 import { Modal, Form, Select, Input as AntInput } from "antd";
 import type { FormInstance } from "antd";
-import { Button } from "../ui/Button";
-import type { CreateResourceDTO } from "../../services/api";
+import { Button } from "@/components/ui";
+import type { CreateResourceDTO } from "@/services/service.api";
 
 const { Option } = Select;
 

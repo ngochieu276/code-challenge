@@ -1,5 +1,5 @@
-import React from 'react';
-import { cn } from '../../utils/cn';
+import React from "react";
+import { cn } from "@/utils/cn";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -8,19 +8,21 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rightIcon?: React.ReactNode;
 }
 
-export const Input: React.FC<InputProps> = ({ 
-  className, 
-  label, 
-  error, 
-  leftIcon, 
-  rightIcon, 
+export const Input: React.FC<InputProps> = ({
+  className,
+  label,
+  error,
+  leftIcon,
+  rightIcon,
   id,
-  ...props 
+  ...props
 }) => {
   return (
     <div className="w-full">
       {label && (
-        <label htmlFor={id} className="block text-sm font-medium text-text-secondary mb-1.5">
+        <label
+          htmlFor={id}
+          className="block text-sm font-medium text-text-secondary mb-1.5">
           {label}
         </label>
       )}
@@ -47,9 +49,7 @@ export const Input: React.FC<InputProps> = ({
           </div>
         )}
       </div>
-      {error && (
-        <p className="mt-1 text-xs text-status-danger animate-fade-in">{error}</p>
-      )}
+      {error && <p className="mt-1 text-xs text-status-danger animate-fade-in">{error}</p>}
     </div>
   );
 };
